@@ -1,0 +1,231 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 64px;
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  z-index: 10;
+  &__menu {
+    min-height: 100vh;
+    transition: all 0.5s linear;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    box-shadow: 0 0 70px rgba(0, 0, 0, 0.4);
+    background: $white;
+    background-color: $primary;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateX(-150%);
+    padding-top: 100px;
+    &.active {
+      transform: translateX(0);
+      background-color: $secondary;
+    }
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    width: 100%;
+    padding: 15px;
+  }
+  &__item {
+    margin-bottom: 30px;
+  }
+  &__link {
+    color: $c-green;
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: 32px;
+    &:hover {
+      color: $white;
+    }
+  }
+  &__logo-container {
+    width: 133px;
+    height: 32px;
+    z-index: 10;
+  }
+  &__logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  &__button {
+    display: none;
+  }
+  &.scroll {
+    background-color: $secondary;
+    -webkit-box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.06);
+    -moz-box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.06);
+    box-shadow: 0px 12px 24px 0px rgba(0, 0, 0, 0.06);
+    .navbar__link  {
+      color: $c-green;
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}
+
+.navbar-toggler {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+  margin-left: auto;
+  z-index: 4;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  width: 73px;
+  height: 32px;
+  &:focus {
+    outline: none;
+  }
+
+  &__line {
+    height: 2px;
+    margin-bottom: 8px;
+    display: block;
+    transition: all 0.3s ease;
+    background-color: $white;
+    width: 56px;
+    position: relative;
+
+    &:nth-child(3) {
+      margin-bottom: 0;
+    }
+  }
+
+  &.active {
+    .navbar-toggler__line:nth-child(1) {
+      transform: rotate(45deg);
+      margin: 0;
+      width: 30px;
+    }
+
+    .navbar-toggler__line:nth-child(3) {
+      transform: rotate(-45deg);
+      margin: 10px 0 0;
+      width: 30px;
+    }
+
+    .navbar-toggler__line:nth-child(2) {
+      opacity: 0;
+      margin-bottom: -14px;
+      -webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+    }
+
+    &:hover {
+      .navbar-toggler__line {
+        background-color: $c-info;
+        animation: none;
+      }
+    }
+  }
+
+  &:hover {
+    .navbar-toggler__line {
+      background-color: $c-info;
+    }
+  }
+}
+
+
+// breakpoint-tablet
+@media (min-width: $breakpoint-tablet) {
+  .navbar-toggler {
+    display: none !important;
+  }
+
+  .navbar {
+    width: 100%;
+    &__menu {
+      min-height: auto;
+      justify-content: flex-end;
+      align-items: center;
+      flex-direction: row;
+      background: transparent;
+      position: relative;
+      width: auto;
+      transform: translateX(0%);
+      height: 100%;
+      padding: 0;
+      margin-left: auto;
+      box-shadow: none;
+    }
+    &__button {
+      display: flex;
+    }
+    &__list {
+      flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0;
+    }
+    &__item {
+      margin-bottom: 0;
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+    }
+    &__link {
+      font-size: 0.875rem;
+      margin-bottom: 0;
+      color: $c-info;
+      font-weight: 500;
+      line-height: 1;
+    }
+    &__logo-container {
+      display: block;
+    }
+    &__button {
+      column-gap: 4px;
+      margin-left: 10px;
+    }
+  }
+}
+
+// breakpoint-desktop
+@media (min-width: $breakpoint-desktop) {
+  .navbar {
+    height: 100px;
+    &__item {
+      margin-left: 27px;
+    }
+    &__button {
+      column-gap: 17px;
+      margin-left: 50px;
+    }
+  }
+}
+// breakpoint-xl-desktop
+@media (min-width: $breakpoint-xl-desktop) {
+  .navbar{
+    padding: 16px 69px;
+  }
+}
+// breakpoint-big-screen
+@media (min-width: $breakpoint-big-screen) {
+  .navbar{
+    &__link {
+      font-size: 1.125rem;
+    }
+  }
+}
