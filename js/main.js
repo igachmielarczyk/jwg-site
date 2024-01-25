@@ -1,9 +1,7 @@
 // Accordion 
-
 class Accordion {
   constructor(selector) {
     this.containers = document.querySelectorAll(selector);
-    this.init();
   }
 
   init() {
@@ -41,20 +39,19 @@ class Accordion {
 const accordion1 = new Accordion(".accordion-container-1");
 const accordion2 = new Accordion(".accordion-container-2");
 
+accordion1.init();
+accordion2.init();
 
 // Navbar hamburger
-
 class NavbarMenu {
   constructor(navMenuSelector, navTogglerSelector, htmlElementSelector) {
     this.navMenu = document.querySelector(navMenuSelector);
     this.navToggler = document.querySelector(navTogglerSelector);
     this.htmlElement = document.querySelector(htmlElementSelector);
-    this.toggleMenu = this.toggleMenu.bind(this);
-    this.init();
   }
 
   init() {
-    this.navToggler.addEventListener("click", this.toggleMenu);
+    this.navToggler.addEventListener("click", this.toggleMenu.bind(this));
   }
 
   toggleMenu() {
@@ -65,19 +62,17 @@ class NavbarMenu {
 }
 
 const navbarMenu = new NavbarMenu(".navbar__menu", ".navbar-toggler", "html");
+navbarMenu.init();
 
 // Navbar Scroll
-
 class TransparentNavbar {
   constructor(navbarId, scrollThreshold) {
     this.navbar = document.getElementById(navbarId);
     this.scrollThreshold = scrollThreshold;
-    this.handleScroll = this.handleScroll.bind(this);
-    this.init();
   }
 
   init() {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('scroll', this.handleScroll.bind(this));
   }
 
   handleScroll() {
@@ -91,16 +86,15 @@ class TransparentNavbar {
 
 const scrollThreshold = 120;
 const transparentNavbar = new TransparentNavbar('navbar', scrollThreshold);
-
+transparentNavbar.init();
 
 // Smooth Scroll
 class SmoothScroll {
   constructor() {
     this.links = document.querySelectorAll('a[href^="#"]');
-    this.addSmoothScroll();
   }
 
-  addSmoothScroll() {
+  init() {
     this.links.forEach(link => {
       link.addEventListener('click', this.handleSmoothScroll.bind(this));
     });
@@ -120,3 +114,4 @@ class SmoothScroll {
 }
 
 const smoothScroll = new SmoothScroll();
+smoothScroll.init();

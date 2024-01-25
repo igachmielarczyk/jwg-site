@@ -17,6 +17,7 @@ body {
 a {
   text-decoration: none;
   transition: all 0.3s linear;
+  color: $black;
 }
 
 html.active {
@@ -159,15 +160,34 @@ p {
 }
 
 .more-arrow {
-  display: flex;
-  justify-content: flex-end;
+  display: block;
+  width: 100%;
+  height: 30px;
+  position: relative;
   margin-top: auto;
-  align-items: center;
-  column-gap: 10px;
-  &__text {
+  &::before {
+    content: "WIĘCEJ";
+    position: absolute;
+    bottom: 0;
+    right: 0;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 1rem;
+    padding-right: 30px;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: $black;
+    width: 15px;
+    height: 15px;
+    transition: all 0.3s ease-in-out;
+    bottom: 0;
+    right: 0;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url("../images/arrow-more.svg");
+    mask-image: url("../images/arrow-more.svg");
   }
 }
 
@@ -207,15 +227,36 @@ p {
   .social-link {
     width: 26px;
     height: 26px;
-    svg {
-      color: $white;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      background-color: $white;
       width: 12px;
       height: 12px;
       transition: all 0.3s ease-in-out;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-mask-size: cover;
+      mask-size: cover;
+    }
+    &--insta {
+      &::after {
+        -webkit-mask-image: url("../images/insta.svg");
+        mask-image: url("../images/insta.svg");
+      }
+    }
+    &--fb {
+      &::after {
+        -webkit-mask-image: url("../images/fb.svg");
+        mask-image: url("../images/fb.svg");
+      }
     }
     &:hover {
-      svg {
-        color: $primary;
+      &::after {
+        background-color: $primary;
+        transform: translate(-50%, -50%) scale(1.1);
       }
     }
   }
@@ -241,7 +282,7 @@ p {
 .offers {
   padding-top: 30px;
   padding-bottom: 30px;
-  @include responsive-container-padding(15px, 30px, 35px, 79px, 160px);
+  @include responsive-container-padding(15px, 30px, 88px, 160px, 260px);
 }
 
 .title-space-around {
@@ -305,6 +346,7 @@ p {
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   row-gap: 30px;
   column-gap: 30px;
+  list-style: none;
 }
 .offer {
   border: 1px solid $c-green;
@@ -312,8 +354,11 @@ p {
   color: $black;
   padding: 20px 20px;
   transition: all 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
+  &__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
   &__top {
     display: flex;
     margin-bottom: 20px;
@@ -341,7 +386,7 @@ p {
 .faq {
   padding-top: 40px;
   padding-bottom: 40px;
-  @include responsive-container-padding(15px, 30px, 35px, 79px, 160px);
+  @include responsive-container-padding(15px, 30px, 88px, 160px, 260px);
   h2 {
     color: $white;
   }
@@ -387,12 +432,20 @@ p {
   transition: all 0.4s linear;
   width: 100%;
   margin-bottom: 20px;
-  svg {
+  &::before {
+    content: "";
     position: absolute;
     right: 20px;
     top: 44%;
     transform: translateY(-50%);
+    width: 23px;
+    height: 24px;
+    -webkit-mask: url("../images/angle-down.svg") no-repeat 50% 50%;
+    mask: url("../images/angle-down.svg") no-repeat 50% 50%;
+    -webkit-mask-size: cover;
+    mask-size: cover;
     transition: all 0.4s linear;
+    background-color: $white;
   }
   &__button {
     border: none;
@@ -416,10 +469,8 @@ p {
   }
   &:hover {
     background-color: $white;
-    svg {
-      rect {
-        fill: $c-green;
-      }
+    &:before {
+      background-color: $c-green;
     }
     .accordion-container__button {
       color: $black;
@@ -437,14 +488,14 @@ p {
         color: $c-green;
       }
     }
-    svg {
+    &::before {
       transform: rotate(-180deg);
-      rect {
-        fill: $c-green;
-      }
+      background-color: $c-green;
     }
   }
 }
+
+// RWD
 
 // breakpoint-xl-mobile
 @media (min-width: $breakpoint-xl-mobile) {
@@ -631,6 +682,18 @@ p {
   .arrow-link {
     left: 16px;
   }
+  .accordion-wrapper {
+    column-gap: 88px;
+  }
+  .accordion-item {
+    margin-top: 70px;
+    &__title {
+      margin-bottom: 70px;
+    }
+  }
+  .title-space-around {
+    margin-bottom: 80px;
+  }
 }
 
 // breakpoint-xl-desktop
@@ -686,6 +749,10 @@ p {
       margin-bottom: 6px;
     }
   }
+  .wrapper-offers {
+    row-gap: 50px;
+    column-gap: 50px;
+  }
   .offer {
     padding: 36px 42px;
   }
@@ -704,6 +771,7 @@ p {
   }
   .accordion-container {
     padding: 0 44px;
+    margin-bottom: 25px;
     &__button {
       padding: 15px 0;
     }
@@ -722,5 +790,8 @@ p {
     font-size: 1rem;
     height: 50px;
     width: 200px;
+  }
+  .accordion-wrapper {
+    column-gap: 120px;
   }
 }
