@@ -28,7 +28,6 @@ class Accordion {
     if (!clickedContainer.classList.contains("active")) {
       this.closePanels(group);
     }
-
     clickedContainer.classList.toggle("active");
     const panel = clickedContainer.querySelector('.accordion-container__panel');
     panel.classList.toggle("active");

@@ -348,33 +348,35 @@ p {
 .more-arrow {
   display: block;
   width: 100%;
-  height: 30px;
+  height: 40px;
   position: relative;
   margin-top: auto;
 }
 .more-arrow::before {
   content: "WIĘCEJ";
   position: absolute;
-  bottom: 0;
+  top: 50%;
   right: 0;
   text-transform: uppercase;
   font-weight: 700;
   font-size: 1rem;
-  padding-right: 30px;
+  padding-right: 20px;
+  transform: translateY(-50%);
 }
 .more-arrow::after {
   content: "";
   position: absolute;
   background-color: #000000;
-  width: 15px;
-  height: 15px;
+  width: 12px;
+  height: 12px;
   transition: all 0.3s ease-in-out;
-  bottom: 0;
-  right: 0;
+  top: 55%;
+  right: 2px;
   -webkit-mask-size: cover;
   mask-size: cover;
   -webkit-mask-image: url("../images/arrow-more.svg");
   mask-image: url("../images/arrow-more.svg");
+  transform: translateY(-50%);
 }
 
 .header {
@@ -927,8 +929,13 @@ p {
   .offer {
     padding: 36px 42px;
   }
-  .more-arrow__text {
+  .more-arrow::before {
+    padding-right: 30px;
     font-size: 1.375rem;
+  }
+  .more-arrow::after {
+    width: 15px;
+    height: 15px;
   }
   .accordion-item__title {
     margin-bottom: 104px;
